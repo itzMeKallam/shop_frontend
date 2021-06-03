@@ -10,7 +10,7 @@ import {adminSignupAction} from '../../../store/admin/signup/'
 // auth Actions
 import {useAdminAuth} from '../common/auth/action/'
 // Error Action
-import {useError} from '../common/error/action/'
+import {useDisplay} from '../common/display/action/'
 // BAckdrop Actions
 import {useToggleBackdrop} from '../common/backdrop/action/'
 
@@ -25,7 +25,7 @@ export const useFunctions=()=>{
     // Backdrop
     const [toggleBackdrop] = useToggleBackdrop()
     // Error
-    const [openErrorStatus, closeErrorStatus] = useError()
+    const [openDisplayStatus, closeDisplayStatus] = useDisplay()
 
     let message, data
     const dispatch = useDispatch() 
@@ -48,12 +48,12 @@ export const useFunctions=()=>{
             message = error.response.data.message
             data = error.response.data.data
             toggleBackdrop()
-            openErrorStatus(message, data)
+            openDisplayStatus(message)
         }
         })
         dispatch(adminSignupAction.clearFields())
     }
 
-    return [onChangeHandler, submit, closeErrorStatus]
+    return [onChangeHandler, submit, closeDisplayStatus]
 
 }

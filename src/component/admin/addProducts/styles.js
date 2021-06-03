@@ -10,6 +10,15 @@ export const useStyles = makeStyles((theme) => ({
     position: 'relative',
     height: 'calc(100vh - 66px)'
   }, 
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+},
+
+dialogTitle:{
+  fontWeight: 700,
+  color: '#f00'
+},
   form: {
     display: 'flex',
     flexDirection: 'column',

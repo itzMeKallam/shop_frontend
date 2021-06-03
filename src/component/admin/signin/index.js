@@ -10,10 +10,10 @@ import { useSelector} from 'react-redux'
 import {useFunctions} from './functions'
 export default function Index() {
     const classes = useStyles()
-    const [onChangeHandler, submit, closeErrorStatus] = useFunctions() 
+    const [onChangeHandler, submit, closeDisplayStatus] = useFunctions() 
     const form = useSelector(state=> state.adminSignin.form)
     const backdrop = useSelector(state=> state.backdrop.backdrop)
-    const error = useSelector(state=> state.error)
+    const display = useSelector(state=> state.display)
     return (
         <Box component='div' className={classes.root}>
             {/* Backdrop */}
@@ -21,18 +21,16 @@ export default function Index() {
                 <CircularProgress color="secondary" className={classes.progress}/>
             </Backdrop>
             {/* Error */}
-            <Dialog onClose={closeErrorStatus} aria-labelledby="simple-dialog-title" open={error.status}>
-                <DialogTitle id="simple-dialog-title" className={classes.dialogTitle}>{error.message}</DialogTitle>
+            <Dialog onClose={closeDisplayStatus} aria-labelledby="simple-dialog-title" open={display.status}>
+                <DialogTitle id="simple-dialog-title" className={classes.dialogTitle}>{display.message}</DialogTitle>
                 <Divider />
                 <List>
-                    {error.data.map((d, index) => (
-                    <ListItem button key={index}>
-                        <ListItemText primary={d.msg} />
+                    <ListItem button>
+                        <ListItemText primary={display.data} />
                     </ListItem>
-                    ))}
-                </List>
+                </List> 
                 <DialogActions>
-                    <Button onClick={closeErrorStatus} color="primary">
+                    <Button onClick={closeDisplayStatus} color="primary">
                         Close
                     </Button>
                 </DialogActions>

@@ -1,19 +1,19 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-const errorSlice = createSlice({
-    name: 'error', 
+const displaySlice = createSlice({
+    name: 'display', 
     initialState: {
             status: false,
             message: '',
-            data: [],
+            data: ''
     },
     reducers:{
-        closeErrorStatus(state){
+        closeDisplayStatus(state){
             state.status = false
             state.message= ''
-            state.data = []
+            state.data = ''
         },
-        openErrorStatus(state, action){
+        openDisplayStatus(state, action){
             state.status = true
             state.message= action.payload.message
             state.data = action.payload.data
@@ -21,6 +21,6 @@ const errorSlice = createSlice({
     }
 })
 
-export const errorAction = errorSlice.actions
+export const displayAction = displaySlice.actions
 
-export default errorSlice
+export default displaySlice

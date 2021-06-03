@@ -10,7 +10,7 @@ import {adminSigninAction} from '../../../store/admin/signin/'
 // auth Actions
 import {useAdminAuth} from '../common/auth/action/'
 // Error Action
-import {useError} from '../common/error/action/'
+import {useDisplay} from '../common/display/action/'
 // BAckdrop Actions
 import {useToggleBackdrop} from '../common/backdrop/action/'
 
@@ -18,14 +18,14 @@ export const useFunctions=()=>{
     // Effects
     // Auth Effects
     useAuthEffects()
-
+ 
     //Actions
     // Auth Actions
     const [setAuth, restAuth] = useAdminAuth()
     // Backdrop
     const [toggleBackdrop] = useToggleBackdrop()
     // Error
-    const [openErrorStatus, closeErrorStatus] = useError()
+    const [openDisplayStatus, closeDisplayStatus] = useDisplay()
 
     let message, data
     const dispatch = useDispatch() 
@@ -34,7 +34,6 @@ export const useFunctions=()=>{
     const onChangeHandler=(e, field)=>{
         dispatch(adminSigninAction.onChangeHandler({field, value: e.target.value}))
     }
-
     const submit=()=>{
         toggleBackdrop()
         Axios.post('/admin/signin', signin.form).then(response=>{
@@ -47,12 +46,12 @@ export const useFunctions=()=>{
             message = error.response.data.message
             data = error.response.data.data
             toggleBackdrop()
-            openErrorStatus(message, data)
+            openDisplayStatus({message, data})
         }
         })
         dispatch(adminSigninAction.clearFields())
     }
 
-    return [onChangeHandler, submit, closeErrorStatus]
+    return [onChangeHandler, submit, closeDisplayStatus]
 
 }

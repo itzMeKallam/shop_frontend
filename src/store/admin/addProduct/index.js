@@ -3,8 +3,8 @@ import {createSlice} from '@reduxjs/toolkit'
 const addProductSlice = createSlice({
     name: 'AddProduct', 
     initialState: {
-        title: 'The Book',
-        description: 'Ultimate guide for ML',
+        title: 'A Master class book',
+        description: 'A book to open the magical world',
         price: 50
     },
     reducers:{
@@ -14,7 +14,7 @@ const addProductSlice = createSlice({
         restProduct(state){ 
             state.title = ''
             state.description = ''
-            state.price = null
+            state.price = 0
         },
        
     }

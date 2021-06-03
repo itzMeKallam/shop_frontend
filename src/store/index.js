@@ -3,7 +3,7 @@ import adminSignupSlice from './admin/signup/'
 import adminSigninSlice from './admin/signin/'
 import adminAuthSlice from './admin/auth/'
 import backdropSlice from './backdrop/'
-import errorSlice from './error/'
+import displaySlice from './display/'
 import addProduct from './admin/addProduct/'
 const store = configureStore({
     reducer : {
@@ -11,7 +11,7 @@ const store = configureStore({
         adminSignin: adminSigninSlice.reducer,
         adminAuth: adminAuthSlice.reducer,
         backdrop: backdropSlice.reducer,
-        error: errorSlice.reducer,
+        display: displaySlice.reducer,
         adminAddProduct: addProduct.reducer
     }
 }) 
